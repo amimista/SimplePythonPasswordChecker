@@ -4,9 +4,8 @@
 
 from passwordChecker import passwordChecker
 
-def main():
-  password = input("Please enter a password: ")
-  checker = passwordChecker(password)
-  checker.checkAgainstCommonPasswords()
-
-main()
+if __name__ == "__main__":
+    password = input("Please enter a password: ")
+    checker = passwordChecker(password)
+    checker.checkPassword()
+    checker.printRecommendations()
