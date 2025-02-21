@@ -2,12 +2,18 @@ import requests
 import time
 import random
 
+"""This class will check the user's password for security. It will check the password against a list of common passwords and check for full patterns.
+"""
 class passwordChecker:
   def __init__(self, password):
     self.password = password
     self.recommendedLength = 12
     self.recommendations = set()
 
+  """Check the password against a list of common passwords. These lists are given by NordPass and SecLists.
+
+  :param self: The object pointer
+  """
   def checkAgainstCommonPasswords(self):
     # Check against the NordPass list of common passwords
     url = "https://nordpass.com/next/worst-passwords-list/2024/b2c/all.json"
@@ -44,6 +50,10 @@ class passwordChecker:
     else:
       print("Unable to retrieve common passwords. Please try again later.")
   
+  """Check for full patterns of just letters, numbers, etc.
+
+  :param self: The object pointer
+  """
   def checkFullPatterns(self):
     if self.password.isalpha():
       self.recommendations.add("Your password is only letters. Please include numbers and special characters.")
@@ -56,6 +66,9 @@ class passwordChecker:
     if self.password.isupper():
       self.recommendations.add("Your password is only uppercase. Please include lowercase letters.")
 
+  """Print the recommendations to the user.
+  :param self: The object pointer
+  """
   def printRecommendations(self):
     sort = sorted(self.recommendations)
     count = 1
@@ -67,26 +80,34 @@ class passwordChecker:
     else:
       print("Please update your password to be more secure.")
 
-def createPassword():
-  print("---------------------------------------- \n")
-  print("Great! Let's get started.")
-  print("Passwords are more secure when they are personal, long, and unique...")
-  time.sleep(2)
-  print("Here are some tips for creating a secure password:")
-  print("1. Include a mix of letters, numbers, and special characters.")
-  print("2. Avoid using common words or phrases.")
-  print("3. Make it at least 12 characters long.")
-  print("4. Use a passphrase or acronym to help you remember it.")
-  print("5. Consider using a password manager to generate and store your passwords.\n")
-  time.sleep(2)
-  print("So why don't you try creating a new password now?")
+  """Create a password for the user. This function will prompt the user for information to create a password.
+  This will also give the user some guidelines for creating a secure password in the future.
+  :param self: The object pointer
+  """
+  def createPassword():
+    print("---------------------------------------- \n")
+    print("Great! Let's get started.")
+    print("Passwords are more secure when they are personal, long, and unique...")
+    time.sleep(2)
+    print("Here are some tips for creating a secure password:")
+    print("1. Include a mix of letters, numbers, and special characters.")
+    print("2. Avoid using common words or phrases.")
+    print("3. Make it at least 12 characters long.")
+    print("4. Use a passphrase or acronym to help you remember it.")
+    print("5. Consider using a password manager to generate and store your passwords.\n")
+    time.sleep(2)
+    print("So why don't you try creating a new password now?")
 
-  pet = input("What is the name of your first pet? ")
-  number = input("What is your favorite number? This could be as simple as the number 12 (but it has to be two digits). ")
-  special = ["*", "#", "@", "!", "&", "%", "$", "?", "+", "-"]
-  print("Here! I've made a password for you: \n\n" + pet + number + special[random.randint(0, 9)])
+    pet = input("What is the name of your first pet? ")
+    number = input("What is your favorite number? This could be as simple as the number 12 (but it has to be two digits). ")
+    special = ["*", "#", "@", "!", "&", "%", "$", "?", "+", "-"]
+    print("Here! I've made a password for you: \n\n" + pet + number + special[random.randint(0, 9)])
 
-    
+    print("\nRemember, you can always use a password manager to generate and store your passwords.")
+
+  """Check the user's password for security. This function will check the password against a list of common passwords and check for full patterns.
+  :param self: The object pointer
+  """
   def checkPassword(self):
     if len(self.password) < self.recommendedLength:
       self.recommendations.add("Your password is too short. Please make it at least " + str(self.recommendedLength) + " characters.")
@@ -98,12 +119,3 @@ def createPassword():
       self.createPassword()
     else:
       print("Please consider creating a more secure password in the future.")
-
-if __name__ == "__main__":
-    password = input("Please enter a password: ")
-    checker = passwordChecker(password)
-    checker.checkPassword()
-    checker.printRecommendations()
-
-    print ("As a reminder, all your passwords should be unique between accounts.")
-    print("Thank you for using the password checker.")

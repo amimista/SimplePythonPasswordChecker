@@ -4,8 +4,11 @@
 
 from passwordChecker import passwordChecker
 
-if __name__ == "__main__":
+def main():
     password = input("Please enter a password: ")
     checker = passwordChecker(password)
     checker.checkPassword()
     checker.printRecommendations()
+
+    print ("As a reminder, all your passwords should be unique between accounts.")
+    print("Thank you for using the password checker.")
