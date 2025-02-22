@@ -84,7 +84,7 @@ class passwordChecker:
   This will also give the user some guidelines for creating a secure password in the future.
   :param self: The object pointer
   """
-  def createPassword():
+  def createPassword(self):
     print("---------------------------------------- \n")
     print("Great! Let's get started.")
     print("Passwords are more secure when they are personal, long, and unique...")
@@ -98,10 +98,22 @@ class passwordChecker:
     time.sleep(2)
     print("So why don't you try creating a new password now?")
 
-    pet = input("What is the name of your first pet? ")
+    # help the user create a secure password
+    pet = input("What is the name of your first pet or a loved one? ")
     number = input("What is your favorite number? This could be as simple as the number 12 (but it has to be two digits). ")
+    
+    # make a list of special characters
     special = ["*", "#", "@", "!", "&", "%", "$", "?", "+", "-"]
-    print("Here! I've made a password for you: \n\n" + pet + number + special[random.randint(0, 9)])
+    new_password = pet + number + special[random.randint(0, 9)]
+
+    # make the password the recommended length if the user didn't make it long enough
+    while (len(new_password) + 1 < self.recommendedLength):
+      new_password += str(random.randint(0, 9))
+
+    # add a special character to the end of the password
+    new_password += special[random.randint(0, 9)]
+
+    print("Here! I've made a password for you: \n\n" + new_password)
 
     print("\nRemember, you can always use a password manager to generate and store your passwords.")
 
@@ -114,6 +126,7 @@ class passwordChecker:
     
     self.checkAgainstCommonPasswords()
     self.checkFullPatterns()
+    self.printRecommendations()
     response = input("Do you want some recommendations for creating a secure password? (yes/no) ")
     if (response == "yes"): 
       self.createPassword()
