@@ -53,7 +53,7 @@ Don't know how to do that? [Follow this guide](https://www.geeksforgeeks.org/dow
 1. Clone the repository into a folder of your choosing
 
 ```bash
-$ git clone <>
+$ git clone https://github.com/amimista/SimplePythonPasswordChecker.git
 ```
 
 2. Run the Python file
