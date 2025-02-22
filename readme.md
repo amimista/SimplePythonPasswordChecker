@@ -26,7 +26,7 @@ you're done using this tool.
 ### Q&A
 
 1. **Does this tool store any passwords input into the script?** <br />
-   A: Absolutely not. It would be a massive security and privacy concern if I did.
+   A: Absolutely not. It would be a massive security and privacy concern if it did.
    The password that you input into this script only used to check against other common passwords and then is completely scrapped.
 
 2. **How did you come up with the password creation scheme in this script?** <br />
